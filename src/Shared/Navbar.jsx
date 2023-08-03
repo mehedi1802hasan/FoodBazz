@@ -1,9 +1,13 @@
 import React from 'react';
 
 const Navbar = () => {
+  const navOptions=<>
+  <li><a>Submenu 1</a></li>
+            <li><a>Submenu 2</a></li>
+  </>
     return (
         <div>
-            <div className="navbar bg-base-100">
+            <div className="navbar bg-opacity-30 fixed z-10 text-white max-w-screen-xl bg-black">
   <div className="navbar-start">
     <div className="dropdown">
       <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -14,14 +18,13 @@ const Navbar = () => {
         <li>
           <a>Parent</a>
           <ul className="p-2">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
+            {navOptions}
           </ul>
         </li>
         <li><a>Item 3</a></li>
       </ul>
     </div>
-    <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+    <a className="btn btn-ghost normal-case text-xl">FoodBazz</a>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
@@ -30,8 +33,7 @@ const Navbar = () => {
         <details>
           <summary>Parent</summary>
           <ul className="p-2">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
+          {navOptions}
           </ul>
         </details>
       </li>
