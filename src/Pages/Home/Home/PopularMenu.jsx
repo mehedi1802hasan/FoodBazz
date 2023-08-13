@@ -27,6 +27,7 @@ const PopularMenu = () => {
         </Menuitems>)
     }
 </div>
+<h4><button className="btn btn-outline mt-5 border-0 border-b-4 border-red-700 ">see more</button></h4>
         </section>
     );
 };
