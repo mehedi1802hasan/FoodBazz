@@ -1,13 +1,24 @@
 import React from 'react';
+import { useContext } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContex } from '../Firebase/AuthProvider';
 
 const Navbar = () => {
+  const {user,logOut}=useContext(AuthContex);
   const navOptions=<>
  
    <li> <Link to='/'>Home</Link></li>
    <li><Link to='/menu'>Menu</Link></li>
-      
+   <li><Link to='/order/salad'>Order</Link></li>     
   </>
+  const handleLogout=()=>{
+     logOut()
+     .then(()=>{})
+     .catch(error=>{
+      console.log(error)
+     })
+  }
     return (
         <div>
             <div className="navbar bg-opacity-30 fixed z-10 text-white max-w-screen-xl bg-black">
@@ -28,7 +39,16 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn">Button</a>
+  {
+          user ?
+          <>
+            <button onClick={handleLogout} className='btn btn-outline btn-md text-white mx-5 '>Logout</button>
+            <Link className='mr-14' to='/registration'>Registration</Link>
+
+
+          </> : <> <Link className='mr-14' to='/login'>Login</Link></>
+    }
+ 
   </div>
 </div>
         </div>

@@ -26,16 +26,16 @@ const Menu = () => {
       <SectionTitle heading={"Today's Offer"} subHeading={"Don't miss"}></SectionTitle>
       <MenuCategory item={offered}></MenuCategory>
          {/* dessert menu items */}
-         <MenuCategory item={dessert} title={'Dessert'} coverImg='https://i.ibb.co/G7YV5Fk/dessert-bg.jpg'></MenuCategory>
+         <MenuCategory item={dessert} title={'dessert'} coverImg='https://i.ibb.co/G7YV5Fk/dessert-bg.jpg'></MenuCategory>
 
            {/* pizza menu items */}
-         <MenuCategory item={pizza} title={'Pizza'} coverImg='https://i.ibb.co/nfZ5pYm/pizza-bg.jpg'></MenuCategory>
+         <MenuCategory item={pizza} title={'pizza'} coverImg='https://i.ibb.co/nfZ5pYm/pizza-bg.jpg'></MenuCategory>
          
           {/* soup menu items */}
-          <MenuCategory item={soup} title={'Soup'} coverImg='https://i.ibb.co/WPxNqZx/soup-bg.jpg'></MenuCategory>
+          <MenuCategory item={soup} title={'soup'} coverImg='https://i.ibb.co/WPxNqZx/soup-bg.jpg'></MenuCategory>
 
            {/* salad menu items */}
-           <MenuCategory item={salad} title={'Salad'} coverImg='https://i.ibb.co/JyvCn4t/salad-bg.jpg'></MenuCategory>
+           <MenuCategory item={salad} title={'salad'} coverImg='https://i.ibb.co/JyvCn4t/salad-bg.jpg'></MenuCategory>
         </div>
     );
 };
