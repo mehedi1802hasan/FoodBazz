@@ -1,31 +1,44 @@
 import React from 'react';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContex } from '../../../Firebase/AuthProvider';
 import Swal from 'sweetalert2'
 
 const Registration = () => {
-    const{createUser}=useContext(AuthContex)
+    const navigate=useNavigate();
+    const{createUser,updateUserProfile}=useContext(AuthContex)
     const {
         register,
         handleSubmit,
+        reset,
        
         formState: { errors },
     } = useForm()
     const onSubmit = (data) => {
         console.log(data);
-        createUser(data.email, data.password)
+        createUser( data.email, data.password)
         .then(result=>{
             const currentUSer=result.user;
             console.log('currentUser',currentUSer);
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'succeffully User Created ',
-                showConfirmButton: false,
-                timer: 1500
-              })
+           
+             updateUserProfile(data.name , data.photoURL)
+             .then(
+             ()=>{
+                console.log('user profile info updated');
+                reset();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'succeffully profile updated  ',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                  navigate('/')
+             })
+             .catch(error=>{
+                console.log(error)
+             })
         })
     }
     
@@ -60,6 +73,28 @@ const Registration = () => {
 
                                 </div>
                             </div>
+
+                            <div>
+                                <label
+                                        type="text"
+                                    htmlFor="photoURL"
+                                    className="block text-sm font-medium text-gray-700 undefined"
+                                >
+                                    PhotoUrl
+                                </label>
+                                <div className="flex flex-col items-start">
+                                    <input
+                                        type="text"
+                                        name="photoURL"
+                                        {...register("photoURL", { required: true })}
+                                        className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    />
+                            
+
+                                </div>
+                            </div>
+
+
                             <div className="mt-4">
                                 <label
                                     htmlFor="email"
@@ -96,22 +131,7 @@ const Registration = () => {
                                      {errors.password?.type === 'pattern' && <span className='text-pink-500'> must be need One smaller ,One capital ,One special charecter And One number </span>}
                                 </div>
                             </div>
-                            <div className="mt-4">
-                                <label
-                                    htmlFor="password_confirmation"
-                                    className="block text-sm font-medium text-gray-700 undefined"
-                                >
-                                    Confirm Password
-                                </label>
-                                <div className="flex flex-col items-start">
-                                    <input
-                                        type="password"
-                                        name="password_confirmation"
-                                        {...register("password_confirmation", { required: true })}
-                                        className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    />
-                                </div>
-                            </div>
+                           
                             <a
                                 href="#"
                                 className="text-xs text-purple-600 hover:underline"
